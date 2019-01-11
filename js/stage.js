@@ -53,6 +53,14 @@ class Stage {
       line(0, -this.maxVolt, this.limit, -this.maxVolt);
       line(0, this.maxVolt, this.limit, this.maxVolt);
     }
+
+    // Draw name if configured
+    if (this.name) {
+      textSize(24);
+      textAlign(CENTER);
+      fill(255);
+      text(this.name, this.limit/2, -this.maxVolt - 25);
+    }
     pop();
   }
 

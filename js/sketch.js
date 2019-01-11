@@ -13,6 +13,7 @@ function setup() {
   otptGainSlider = createSlider(0, 10, 2, 0.2);
 
   stages.source = new Stage({
+    name: "Source",
     x: 50,
     y: floor(height / 2),
     amplitude: srcAmpSlider.value(),
@@ -21,6 +22,7 @@ function setup() {
   });
 
   stages.input = new Stage({
+    name: "Input Gain",
     x: 50 + floor(width / 3 - 10),
     y: floor(height / 2),
     amplitude: inptGainSlider.value(),
@@ -30,6 +32,7 @@ function setup() {
   });
 
   stages.output = new Stage({
+    name: "Output Gain",
     x: 50 + floor(width / 3 - 10) + floor(width / 3 - 10),
     y: floor(height / 2),
     amplitude: otptGainSlider.value(),
