@@ -15,7 +15,7 @@ function setup() {
   stages.source = new Stage({
     x: 50,
     y: floor(height / 2),
-    amplitude: 20,
+    amplitude: srcAmpSlider.value(),
     limit: floor(width / 3 - 10),
     src: null
   });
@@ -23,16 +23,18 @@ function setup() {
   stages.input = new Stage({
     x: 50 + floor(width / 3 - 10),
     y: floor(height / 2),
-    amplitude: 2,
+    amplitude: inptGainSlider.value(),
     limit: floor(width / 3 - 10),
+    maxVolt: 100,
     src: stages.source
   });
 
   stages.output = new Stage({
     x: 50 + floor(width / 3 - 10) + floor(width / 3 - 10),
     y: floor(height / 2),
-    amplitude: 2,
+    amplitude: otptGainSlider.value(),
     limit: floor(width / 3 - 10),
+    maxVolt: 150,
     src: stages.input
   });
 
@@ -43,8 +45,8 @@ function draw() {
 
 
   stages.source.calc(srcAmpSlider.value(), freq);
-  stages.input.calc(inptGainSlider.value(), freq);
-  stages.output.calc(otptGainSlider.value(), freq);
+  stages.input.calc(inptGainSlider.value());
+  stages.output.calc(otptGainSlider.value());
 
   for (const key in stages) {
     stages[key].draw();
@@ -87,9 +89,4 @@ function draw() {
   // line(0, 150, wave.length, 150);
 
   freq += 0.05;
-
-
-  if (wave.length > floor(width / 3 - 10)) {
-    wave.pop();
-  }
 }
