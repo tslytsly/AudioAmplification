@@ -7,14 +7,25 @@ let srcAmpSlider;
 let stages = {};
 
 function setup() {
-  createCanvas(windowWidth, 600);
+  canvas = createCanvas(windowWidth, 600);
+  canvas.parent('canvas');
+
+  // create text labels for sliders
+  let srcSldrLabel, inptSldrLabel, otptSldrLabel;
+
+
+  // create slisers
   srcAmpSlider = createSlider(0, 50, 40, 0.5);
   inptGainSlider = createSlider(0, 10, 2, 0.2);
   otptGainSlider = createSlider(0, 10, 1.5, 0.1);
+  srcAmpSlider.parent('leftSlider');
+  inptGainSlider.parent('centreSlider');
+  otptGainSlider.parent('rightSlider');
+
 
   stages.source = new Stage({
     name: "Source",
-    x: 50,
+    x:0,
     y: floor(height / 2),
     amplitude: srcAmpSlider.value(),
     limit: floor(width / 3 - 10),
@@ -23,7 +34,7 @@ function setup() {
 
   stages.input = new Stage({
     name: "Input Gain",
-    x: 50 + floor(width / 3 - 10),
+    x: floor(width / 3 - 10),
     y: floor(height / 2),
     amplitude: inptGainSlider.value(),
     limit: floor(width / 3 - 10),
@@ -34,7 +45,7 @@ function setup() {
 
   stages.output = new Stage({
     name: "Output Gain",
-    x: 50 + floor(width / 3 - 10) + floor(width / 3 - 10),
+    x: floor(width / 3 - 10) + floor(width / 3 - 10),
     y: floor(height / 2),
     amplitude: otptGainSlider.value(),
     limit: floor(width / 3 - 10),

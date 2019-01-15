@@ -90,6 +90,11 @@ class Stage {
       stroke(255, 0, 0, 100);
       line(0, -this.maxVolt, this.limit, -this.maxVolt);
       line(0, this.maxVolt, this.limit, this.maxVolt);
+      textSize(12);
+      textAlign(LEFT);
+      fill(255);
+      text("+V Rail", 10, -this.maxVolt - 5);
+      text("-V Rail", 10, this.maxVolt + 15);
     }
     pop();
 
