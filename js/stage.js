@@ -11,6 +11,8 @@ class Stage {
     this.maxVolt = 100;
     this.noise = false;
     this.noiseLvl = 0.5;
+    this.transient = false;
+    this.transTimer = 100;
     for (let opt in opts) {
       this[opt] = opts[opt];
     }
@@ -44,7 +46,18 @@ class Stage {
         }
       }
     } else { //otherwise
-      let y = this.amplitude * sin(this.frq);
+      let y;
+      if (this.transient) {
+        if (this.transTimer > 0) {
+          y = this.maxVolt * sin(this.frq);
+          this.transTimer--;
+        } else {
+          this.transTimer = 100;
+          this.transient = false;
+        }
+      } else {
+        y = this.amplitude * sin(this.frq);
+      }
       this.wave.unshift(y);
     }
 
